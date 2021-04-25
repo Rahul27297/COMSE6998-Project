@@ -72,8 +72,8 @@ async function getTotalCost() {
     solarPanelBrand = document.getElementById("solar-panel-brand").value
     inverterBrand = document.getElementById("inverter-brand").value
 
-    solarPanelBrand = "Trina Solar"
-    inverterBrand = "Ginlong Solis"
+    //solarPanelBrand = "Trina Solar"
+    //inverterBrand = "Ginlong Solis"
 
     url = "https://moz3yfg111.execute-api.us-east-1.amazonaws.com/dev2/gettotalcost/?solar_panel_brand="+solarPanelBrand+"&inverter_brand="+inverterBrand
     console.log(url)
@@ -223,8 +223,73 @@ async function checkInverter() {
     }
 }
 
-async function getQuotation() {
+async function sendQuotationReq() {
     console.log("sending quotation to db")
+
+    // get the values to send
+
+    const data = {
+        // this profile info will need to be changed to user profile data
+        profile: {
+            user_id: "aw123",
+            first_name: "Aditya",
+            last_name: "Wikara"
+        },
+        address: {
+            street: document.getElementById("out-street").value,
+            city: document.getElementById("out-city").value,
+            state: document.getElementById("out-state").value,
+            zipCode: document.getElementById("out-zipcode").value
+        },
+        location: {
+            lat: document.getElementById("out-lat").value,
+            lon: document.getElementById("out-lon").value
+        },
+        solar_panel: {
+            brand: document.getElementById("out-solar-panel-brand").value,
+            quantity: document.getElementById("out-solar-panel-quantity").value,
+            efficiency: document.getElementById("out-solar-panel-eff").value,
+            power: document.getElementById("out-solar-panel-power").value,
+            warranty: document.getElementById("out-solar-panel-warranty").value
+        },
+        inverter: {
+            brand: document.getElementById("out-inverter-brand").value,
+            quantity: document.getElementById("out-inverter-quantity").value,
+            efficiency: document.getElementById("out-inverter-eff").value,
+            power: document.getElementById("out-inverter-power").value,
+            warranty: document.getElementById("out-inverter-warranty").value
+        },
+        performance: {
+            annual_energy: document.getElementById("out-annual-energy").value,
+            annual_cost_savings: document.getElementById("out-annual-savings").value,
+            lifetime_cost_savings: document.getElementById("out-lifetime-savings").value
+        },
+        economics: {
+            system_cost: document.getElementById("out-total-cost").value,
+            payback: document.getElementById("out-pbp").value,
+            roi: document.getElementById("out-roi").value
+        }
+    }
+
+    console.log(JSON.stringify(data))
+    console.log(data)
+
+    try {
+        url = "https://moz3yfg111.execute-api.us-east-1.amazonaws.com/dev2/uploadquotereq/"
+        const response = await fetch(url, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(data),
+        });
+        const json = await response.json();
+        console.log(json);
+    }
+    catch(error) {
+        console.log(error)
+        alert("Error in uploading quotation request")
+    }
 }
 
 function roundToTwo(num) {    

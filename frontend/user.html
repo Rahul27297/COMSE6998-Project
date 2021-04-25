@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Solar Center</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="robots" content="all,follow">
+    <!-- Bootstrap CSS-->
+    <link rel="stylesheet" href="assets/vendor/bootstrap/css/bootstrap.min.css">
+    <!-- Lightbox-->
+    <link rel="stylesheet" href="assets/vendor/lightbox2/css/lightbox.min.css">
+    <!-- Range slider-->
+    <link rel="stylesheet" href="assets/vendor/nouislider/nouislider.min.css">
+    <!-- Bootstrap select-->
+    <link rel="stylesheet" href="assets/vendor/bootstrap-select/css/bootstrap-select.min.css">
+    <!-- Owl Carousel-->
+    <link rel="stylesheet" href="assets/vendor/owl.carousel2/assets/owl.carousel.min.css">
+    <link rel="stylesheet" href="assets/vendor/owl.carousel2/assets/owl.theme.default.css">
+    <!-- Google fonts-->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Libre+Franklin:wght@300;400;700&amp;display=swap">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Martel+Sans:wght@300;400;800&amp;display=swap">
+    <!-- theme stylesheet-->
+    <link rel="stylesheet" href="assets/css/style.default.css" id="theme-stylesheet">
+    <!-- Custom stylesheet - for your changes-->
+    <link rel="stylesheet" href="assets/css/custom.css">
+    
+  </head>
+  <body>
+    <div class="page-holder">
+      <!-- navbar-->
+      <header class="page-holder">
+        <header class="header bg-white">
+          <div class="container px-0 px-lg-3">
+            <nav class="navbar navbar-expand-lg navbar-light py-3 px-lg-0"><a class="navbar-brand" href="index.html"><span class="font-weight-bold text-uppercase text-dark">Solar Central</span></a>
+              <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+              <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav mr-auto">
+                  <li class="nav-item">
+                    <!-- Link--><a class="nav-link" href="index.html">Home</a>
+                  </li>
+                  <li class="nav-item">
+                    <!-- Link--><a class="nav-link" href="getstarted.html">Getting Started</a>
+                  </li>
+                  <li class="nav-item">
+                    <!-- Link--><a class="nav-link" href="about.html">About Us</a>
+                  </li>
+                  <li class="nav-item">
+                    <!-- Link--><a class="nav-link" href="contact.html">Contact</a>
+                  </li>
+                  <!-- 
+                  <li class="nav-item dropdown"><a class="nav-link dropdown-toggle" id="pagesDropdown" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Pages</a>
+                    <div class="dropdown-menu mt-3" aria-labelledby="pagesDropdown"><a class="dropdown-item border-0 transition-link" href="index.html">Homepage</a><a class="dropdown-item border-0 transition-link" href="shop.html">Category</a><a class="dropdown-item border-0 transition-link" href="detail.html">Product detail</a><a class="dropdown-item border-0 transition-link" href="cart.html">Shopping cart</a><a class="dropdown-item border-0 transition-link" href="checkout.html">Checkout</a></div>
+                  </li> -->
+                </ul>
+                <ul class="navbar-nav ml-auto">               
+                  <li class="nav-item"><a class="nav-link" href="#"> <i class="fas fa-user-alt mr-1 text-gray"></i>Login</a></li>
+                </ul>
+              </div>
+            </nav>
+          </div>
+      </header>
+      <!-- Title Banner-->
+      <section class="py-1 bg-light">
+        <div class="container" style="padding: 2.5rem 2.5rem;">
+            <h1 class="h1 text-uppercase mb-3" id="calc-title">User Profile</h1>
+            <h4 class="h4 text-uppercase mb-3" id="calc-title">Welcome Back!</h4>
+        </div>
+      </section>
+      <br>
+      <!--Get User Profile Information-->
+      <section id="get-address" class="py-1">
+        <div class="container">
+          <div class="col-lg-20 mb-5 mb-lg-0">
+            <div class="card border-1 shadow-sm mb-4 mb-lg-5 p-2 p-lg-0">
+              <div class="card-body p-lg-5">
+                <h4 class="h4 mb-4">User Profile</h4>
+                <div class="form-group">
+                    <label>User ID:</label>
+                    <input class="form-control" id="user-id" type="text" placeholder="">
+                </div>
+                <div class="row">
+                  <div class="col-md-6">
+                      <div class="form-group">
+                      <label>First Name</label>
+                      <input id="first-name" type="text" class="form-control">
+                      </div>
+                  </div>
+                  <div class="col-md-6">
+                      <div class="form-group">
+                      <label>Last Name</label>
+                      <input id="last-name" type="text" class="form-control">
+                      </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-md-6">
+                      <div class="form-group">
+                      <label>Street</label>
+                      <input id="user-street" type="text" class="form-control">
+                      </div>
+                  </div>
+                  <div class="col-md-6">
+                      <div class="form-group">
+                      <label>City</label>
+                      <input id="user-city" type="text" class="form-control">
+                      </div>
+                  </div>
+                  <div class="col-md-6">
+                    <div class="form-group">
+                    <label>State</label>
+                    <input id="user-state" type="text" class="form-control">
+                    </div>
+                  </div>
+                  <div class="col-md-6">
+                    <div class="form-group">
+                    <label>Zipcode</label>
+                    <input id="user-zipcode" type="text" class="form-control">
+                    </div>
+                  </div>
+                </div>
+                <div style="text-align: right;">
+                  <a class="btn btn-dark" style="color: white;" class="scroll" onclick="updateVendorProfile()">Update</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <!--Load the Bid Requests-->
+      <section id="get-bids" class="py-1">
+        <div class="container py-1">
+          <div class="col-lg-20 mb-5 mb-lg-0">
+            <!-- Title-->
+            <div class="card border-1 shadow-sm mb-4 mb-lg-5 p-2 p-lg-0">
+              <div class="card-body p-lg-5">
+                <h2 class="h3 mb-4">Bids</h2>
+
+                <!--The Table-->
+                <div class="table-responsive mb-4">
+                    <table class="table">
+                    <thead class="bg-light">
+                        <tr>
+                        <th class="border-0" scope="col"> <strong class="text-small text-uppercase">Date</strong></th>
+                        <th class="border-0" scope="col"> <strong class="text-small text-uppercase">Quotation ID</strong></th>
+                        <th class="border-0" scope="col"> <strong class="text-small text-uppercase">Location</strong></th>
+                        <th class="border-0" scope="col"> <strong class="text-small text-uppercase">Solar Panel</strong></th>
+                        <th class="border-0" scope="col"> <strong class="text-small text-uppercase">Inverter</strong></th>
+                        <th class="border-0" scope="col"> <strong class="text-small text-uppercase">Est. Price</strong></th>
+                        <th class="border-0" scope="col"> </th>
+                        </tr>
+                    </thead>
+                    <tbody id="quotation-requests">
+                    </tbody>
+                    </table>
+                </div>
+               <!-- Update Button-->
+               <div class="bg-light px-4 py-3">
+                    <div class="row align-items-center text-center">
+                        <div class="col-md-6 text-md-left"><button onclick="sendBid()" class="btn btn-outline-dark btn-sm"> Send Bid<i class="fas fa-long-arrow-alt-right ml-2"></i></button></div>
+                    </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <!--Footer Section-->
+      <footer class="bg-dark text-white">
+        <div class="container py-4">
+          <div class="row py-5">
+            <div class="col-md-4 mb-3 mb-md-0">
+              <h6 class="text-uppercase mb-3">Customer services</h6>
+              <ul class="list-unstyled mb-0">
+                <li><a class="footer-link" href="#">Help &amp; Contact Us</a></li>
+                <li><a class="footer-link" href="#">Returns &amp; Refunds</a></li>
+                <li><a class="footer-link" href="#">Online Stores</a></li>
+                <li><a class="footer-link" href="#">Terms &amp; Conditions</a></li>
+              </ul>
+            </div>
+            <div class="col-md-4 mb-3 mb-md-0">
+              <h6 class="text-uppercase mb-3">Company</h6>
+              <ul class="list-unstyled mb-0">
+                <li><a class="footer-link" href="#">Get Started</a></li>
+                <li><a class="footer-link" href="#">About Us</a></li>
+                <li><a class="footer-link" href="#">Partners</a></li>
+                <li><a class="footer-link" href="#">Contact Us</a></li>
+              </ul>
+            </div>
+            <div class="col-md-4">
+              <h6 class="text-uppercase mb-3">Social Media</h6>
+              <ul class="list-unstyled mb-0">
+                <li><a class="footer-link" href="#">Instagram</a></li>
+                <li><a class="footer-link" href="#">Facebook</a></li>
+                <li><a class="footer-link" href="#">Twitter</a></li>
+                <li><a class="footer-link" href="#">Youtube</a></li>
+              </ul>
+            </div>
+          </div>
+          <div class="border-top pt-4" style="border-color: #1d1d1d !important">
+            <div class="row">
+              <div class="col-lg-6">
+                <p class="small text-muted mb-0">&copy; 2020 All rights reserved.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </footer>
+      <!-- JavaScript files-->
+      <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
+      <script>
+        $(function() {
+          $('a[href*=#]').on('click', function(e) {
+            e.preventDefault();
+            $('html, body').animate({ scrollTop: $($(this).attr('href')).offset().top}, 500, 'linear');
+          });
+        });
+      </script>
+      <script src="assets/js/user.js"></script>
+      <!-- FontAwesome CSS - loading as last, so it doesn't block rendering-->
+      <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+    </div>
+  </body>
+</html>
