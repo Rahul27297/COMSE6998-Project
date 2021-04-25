@@ -160,14 +160,74 @@
               <div class="card-body p-lg-5">
                 <h4 class="h4 mb-4">3. Component Picker</h4>
                 <h6>Solar Panel</h6>
-                <div class="form-group">
-                    <label>Brand/Manufacturer</label>
-                    <input class="form-control" id="solar-panel-brand" type="text" placeholder="Longi Solar">
+                <div class="row">
+                  <div class="col-md-9">
+                      <div class="form-group">
+                        <label >Brand/Manufacturer</label>
+                        <input class="form-control" id="solar-panel-brand" type="text" placeholder="Ginlong Solis" onchange="checkSolarPanel()">
+                      </div>
+                  </div>
+                  <div class="col-md-3">
+                    <div class="form-group">
+                    <label>Quantity</label>
+                    <input id="solar-panel-quantity" type="text" class="form-control">
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-md-4">
+                      <div class="form-group">
+                      <label>Efficiency</label>
+                      <input id="solar-panel-eff" type="text" class="form-control">
+                      </div>
+                  </div>
+                  <div class="col-md-4">
+                    <div class="form-group">
+                    <label>Power Capacity</label>
+                    <input id="solar-panel-power" type="text" class="form-control">
+                    </div>
+                  </div>
+                  <div class="col-md-4">
+                    <div class="form-group">
+                    <label>Warranty</label>
+                    <input id="solar-panel-warranty" type="text" class="form-control">
+                    </div>
+                  </div>
                 </div>
                 <h6>Inverter</h6>
-                <div class="form-group">
-                    <label >Brand/Manufacturer</label>
-                    <input class="form-control" id="inverter-brand" type="text" placeholder="Ginlong Solis">
+                <div class="row">
+                  <div class="col-md-9">
+                      <div class="form-group">
+                        <label >Brand/Manufacturer</label>
+                        <input class="form-control" id="inverter-brand" type="text" placeholder="Ginlong Solis" onchange="checkInverter()">
+                      </div>
+                  </div>
+                  <div class="col-md-3">
+                    <div class="form-group">
+                    <label>Quantity</label>
+                    <input id="inverter-quantity" type="text" class="form-control">
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-md-4">
+                      <div class="form-group">
+                      <label>Efficiency</label>
+                      <input id="inverter-eff" type="text" class="form-control">
+                      </div>
+                  </div>
+                  <div class="col-md-4">
+                    <div class="form-group">
+                    <label>Power Capacity</label>
+                    <input id="inverter-power" type="text" class="form-control">
+                    </div>
+                  </div>
+                  <div class="col-md-4">
+                    <div class="form-group">
+                    <label>Warranty</label>
+                    <input id="inverter-warranty" type="text" class="form-control">
+                    </div>
+                  </div>
                 </div>
                 <div style="text-align: right;">
                   <a class="btn btn-dark" onclick="getEconomics()" href="#results" class="scroll">Calculate!</a>
@@ -185,6 +245,33 @@
               <div class="card-body p-lg-5">
                 <h4 class="h4 mb-4">Results</h4>
                 <form>
+                  <h6>Address</h6>
+                  <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                        <label>Street</label>
+                        <input id="out-street" type="text" class="form-control">
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                        <label>City</label>
+                        <input id="out-city" type="text" class="form-control">
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                      <div class="form-group">
+                      <label>State</label>
+                      <input id="out-state" type="text" class="form-control">
+                      </div>
+                    </div>
+                    <div class="col-md-6">
+                      <div class="form-group">
+                      <label>Zipcode</label>
+                      <input id="out-zipcode" type="text" class="form-control">
+                      </div>
+                    </div>
+                  </div>
                   <h6>Location</h6>
                   <div class="row">
                     <div class="col-md-6">
@@ -200,21 +287,75 @@
                         </div>
                     </div>
                   </div>
-                  <h6>Performance</h6>
+                  <h6>Solar Panel</h6>
                   <div class="row">
                     <div class="col-md-6">
+                        <div class="form-group">
+                        <label>Brand/Manufacturer</label>
+                        <input id="out-solar-panel-brand" type="text" class="form-control">
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                        <label>Efficiency</label>
+                        <input id="out-solar-panel-eff" type="text" class="form-control">
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                      <div class="form-group">
+                      <label>Power Capacity</label>
+                      <input id="out-solar-panel-power" type="text" class="form-control">
+                      </div>
+                    </div>
+                    <div class="col-md-6">
+                      <div class="form-group">
+                      <label>Warranty</label>
+                      <input id="out-solar-panel-warranty" type="text" class="form-control">
+                      </div>
+                    </div>
+                  </div>
+                  <h6>Inverter</h6>
+                  <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                        <label>Brand/Manufacturer</label>
+                        <input id="out-inverter-brand" type="text" class="form-control">
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                        <label>Efficiency</label>
+                        <input id="out-inverter-eff" type="text" class="form-control">
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                      <div class="form-group">
+                      <label>Power Capacity</label>
+                      <input id="out-inverter-power" type="text" class="form-control">
+                      </div>
+                    </div>
+                    <div class="col-md-6">
+                      <div class="form-group">
+                      <label>Warranty</label>
+                      <input id="out-inverter-warranty" type="text" class="form-control">
+                      </div>
+                    </div>
+                  </div>
+                  <h6>Performance</h6>
+                  <div class="row">
+                    <div class="col-md-4">
                         <div class="form-group">
                         <label>Annual Energy Generation [kWh]</label>
                         <input id="out-annual-energy" type="text" class="form-control">
                         </div>
                     </div>
-                    <div class="col-md-6">
+                    <div class="col-md-4">
                         <div class="form-group">
                         <label>Annual Cost Savings [$]</label>
                         <input id="out-annual-savings" type="text" class="form-control">
                         </div>
                     </div>
-                    <div class="col-md-6">
+                    <div class="col-md-4">
                       <div class="form-group">
                       <label>Lifetime Cost Savings [$]</label>
                       <input id="out-lifetime-savings" type="text" class="form-control">
@@ -223,19 +364,19 @@
                   </div>
                   <h6>Economics</h6>
                   <div class="row">
-                    <div class="col-md-6">
+                    <div class="col-md-4">
                       <div class="form-group">
                       <label> System Cost [$]</label>
                       <input id="out-total-cost" type="text" class="form-control">
                       </div>
                     </div>
-                    <div class="col-md-6">
+                    <div class="col-md-4">
                         <div class="form-group">
                         <label>Payback Period [Years]</label>
                         <input id="out-pbp" type="text" class="form-control">
                         </div>
                     </div>
-                    <div class="col-md-6">
+                    <div class="col-md-4">
                         <div class="form-group">
                         <label>ROI [%]</label>
                         <input id="out-roi" type="text" class="form-control">

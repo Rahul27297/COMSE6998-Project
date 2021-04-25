@@ -27,6 +27,10 @@ async function getLocation() {
             // update in the outputs section
             document.getElementById("out-lat").value = location.lat
             document.getElementById("out-lon").value = location.lon
+            document.getElementById("out-state").value = state
+            document.getElementById("out-city").value = city
+            document.getElementById("out-state").value = state
+            document.getElementById("out-zipcode").value = zipCode
         }
     }
     catch(error) {
@@ -73,6 +77,7 @@ async function getTotalCost() {
 
     url = "https://moz3yfg111.execute-api.us-east-1.amazonaws.com/dev2/gettotalcost/?solar_panel_brand="+solarPanelBrand+"&inverter_brand="+inverterBrand
     console.log(url)
+
     try {
         const response = await fetch(url);
         const totalCost = await response.json();
@@ -91,6 +96,18 @@ async function getTotalCost() {
         } else {
             // update the total cost
             document.getElementById("out-total-cost").value = systemCost.toString()
+            
+            // update the solar panel in the results
+            document.getElementById("out-solar-panel-brand").value = totalCost.solar_panel.brand
+            document.getElementById("out-solar-panel-eff").value = totalCost.solar_panel.efficiency
+            document.getElementById("out-solar-panel-power").value = totalCost.solar_panel.power
+            document.getElementById("out-solar-panel-warranty").value = "25 Years"
+            
+            // update the inverter in the results
+            document.getElementById("out-inverter-brand").value = totalCost.inverter.brand
+            document.getElementById("out-inverter-eff").value = "92.50 %"
+            document.getElementById("out-inverter-power").value = totalCost.inverter.power
+            document.getElementById("out-inverter-warranty").value = totalCost.inverter.warranty
         }
     }
     catch(error) {
@@ -108,6 +125,7 @@ async function getEconomics() {
     lifeTimeCostSavings = document.getElementById("out-lifetime-savings").value
     url = "https://moz3yfg111.execute-api.us-east-1.amazonaws.com/dev2/geteconomics/?total_cost="+totalCost+"&annual_cost_savings="+annualCostSavings+"&lifetime_cost_savings="+lifeTimeCostSavings
     console.log(url)
+
     try {
         const response = await fetch(url);
         const econ = await response.json();
@@ -125,6 +143,66 @@ async function getEconomics() {
     catch(error) {
         console.log(error)
         alert("Invalid in calculating economics")        
+    }
+}
+
+async function checkSolarPanel() {
+    solarPanelBrand = document.getElementById("solar-panel-brand").value
+    sysCap = parseFloat(document.getElementById("sys-cap").value)
+
+    // calculate how much quantity is needed
+
+
+    url = "https://moz3yfg111.execute-api.us-east-1.amazonaws.com/dev2/getsolarpanel/?solar_panel_brand="+solarPanelBrand
+    console.log(url)
+    try {
+        const response = await fetch(url);
+        const solarPanelData = await response.json();
+        console.log(solarPanelData)
+
+        // error check the response
+        if (solarPanelData.errorType) {
+            alert("Invalid in calculating economics")
+        } else {
+            // update in the outputs section
+            document.getElementById("solar-panel-eff").value = solarPanelData.solar_panel.efficiency
+            document.getElementById("solar-panel-power").value = solarPanelData.solar_panel.power
+            document.getElementById("solar-panel-warranty").value = "25 Years"
+        }
+    }
+    catch(error) {
+        console.log(error)
+        alert("Invalid in getting solar panel data")        
+    }
+}
+
+async function checkInverter() {
+    inverterBrand = document.getElementById("inverter-brand").value
+    sysCap = document.getElementById("sys-cap").value
+
+    // calculate how much quantity is needed
+
+    url = "https://moz3yfg111.execute-api.us-east-1.amazonaws.com/dev2/getinverter/?inverter_brand="+inverterBrand
+    console.log(url)
+    try {
+        const response = await fetch(url);
+        const inverterData = await response.json();
+        console.log(inverterData)
+
+
+        // error check the response
+        if (inverterData.errorType) {
+            alert("Invalid in calculating economics")
+        } else {
+            // update in the outputs section
+            document.getElementById("inverter-eff").value = "92.50 %"
+            document.getElementById("inverter-power").value = inverterData.inverter.power
+            document.getElementById("inverter-warranty").value = inverterData.inverter.warranty
+        }
+    }
+    catch(error) {
+        console.log(error)
+        alert("Invalid in getting inverter data")        
     }
 }
 
