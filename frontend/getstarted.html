@@ -164,7 +164,7 @@
                   <div class="col-md-9">
                       <div class="form-group">
                         <label >Brand/Manufacturer</label>
-                        <input class="form-control" id="solar-panel-brand" type="text" placeholder="Ginlong Solis" onchange="checkSolarPanel()">
+                        <input class="form-control" id="solar-panel-brand" type="text" placeholder="Canadian Solar" onchange="checkSolarPanel()">
                       </div>
                   </div>
                   <div class="col-md-3">
@@ -243,7 +243,7 @@
           <div class="col-lg-20 mb-5 mb-lg-0">
             <div class="card border-1 shadow-sm mb-4 mb-lg-5 p-2 p-lg-0">
               <div class="card-body p-lg-5">
-                <h4 class="h4 mb-4">Results</h4>
+                <h4 class="h4 mb-4">Quotation Summary</h4>
                 <form>
                   <h6>Address</h6>
                   <div class="row">
@@ -289,25 +289,33 @@
                   </div>
                   <h6>Solar Panel</h6>
                   <div class="row">
-                    <div class="col-md-6">
+                    <div class="col-md-9">
                         <div class="form-group">
-                        <label>Brand/Manufacturer</label>
-                        <input id="out-solar-panel-brand" type="text" class="form-control">
+                          <label >Brand/Manufacturer</label>
+                          <input class="form-control" id="out-solar-panel-brand" type="text" placeholder="">
                         </div>
                     </div>
-                    <div class="col-md-6">
+                    <div class="col-md-3">
+                      <div class="form-group">
+                      <label>Quantity</label>
+                      <input id="out-solar-panel-quantity" type="text" class="form-control">
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-md-4">
                         <div class="form-group">
                         <label>Efficiency</label>
                         <input id="out-solar-panel-eff" type="text" class="form-control">
                         </div>
                     </div>
-                    <div class="col-md-6">
+                    <div class="col-md-4">
                       <div class="form-group">
                       <label>Power Capacity</label>
                       <input id="out-solar-panel-power" type="text" class="form-control">
                       </div>
                     </div>
-                    <div class="col-md-6">
+                    <div class="col-md-4">
                       <div class="form-group">
                       <label>Warranty</label>
                       <input id="out-solar-panel-warranty" type="text" class="form-control">
@@ -316,25 +324,33 @@
                   </div>
                   <h6>Inverter</h6>
                   <div class="row">
-                    <div class="col-md-6">
+                    <div class="col-md-9">
                         <div class="form-group">
-                        <label>Brand/Manufacturer</label>
-                        <input id="out-inverter-brand" type="text" class="form-control">
+                          <label >Brand/Manufacturer</label>
+                          <input class="form-control" id="out-inverter-brand" type="text" placeholder="">
                         </div>
                     </div>
-                    <div class="col-md-6">
+                    <div class="col-md-3">
+                      <div class="form-group">
+                      <label>Quantity</label>
+                      <input id="out-inverter-quantity" type="text" class="form-control">
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-md-4">
                         <div class="form-group">
                         <label>Efficiency</label>
                         <input id="out-inverter-eff" type="text" class="form-control">
                         </div>
                     </div>
-                    <div class="col-md-6">
+                    <div class="col-md-4">
                       <div class="form-group">
                       <label>Power Capacity</label>
                       <input id="out-inverter-power" type="text" class="form-control">
                       </div>
                     </div>
-                    <div class="col-md-6">
+                    <div class="col-md-4">
                       <div class="form-group">
                       <label>Warranty</label>
                       <input id="out-inverter-warranty" type="text" class="form-control">
@@ -385,7 +401,7 @@
                   </div>
               </form>
               <div style="text-align: right;">
-                <a class="btn btn-dark" href="#calculator" class="scroll">Request Quotation!</a>
+                <a class="btn btn-dark" href="#calculator" class="scroll" onclick="getQuotation()">Request Quotation!</a>
               </div>
             </div>
           </div>

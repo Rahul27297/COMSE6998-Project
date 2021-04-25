@@ -27,7 +27,7 @@ async function getLocation() {
             // update in the outputs section
             document.getElementById("out-lat").value = location.lat
             document.getElementById("out-lon").value = location.lon
-            document.getElementById("out-state").value = state
+            document.getElementById("out-street").value = street
             document.getElementById("out-city").value = city
             document.getElementById("out-state").value = state
             document.getElementById("out-zipcode").value = zipCode
@@ -148,10 +148,6 @@ async function getEconomics() {
 
 async function checkSolarPanel() {
     solarPanelBrand = document.getElementById("solar-panel-brand").value
-    sysCap = parseFloat(document.getElementById("sys-cap").value)
-
-    // calculate how much quantity is needed
-
 
     url = "https://moz3yfg111.execute-api.us-east-1.amazonaws.com/dev2/getsolarpanel/?solar_panel_brand="+solarPanelBrand
     console.log(url)
@@ -168,6 +164,16 @@ async function checkSolarPanel() {
             document.getElementById("solar-panel-eff").value = solarPanelData.solar_panel.efficiency
             document.getElementById("solar-panel-power").value = solarPanelData.solar_panel.power
             document.getElementById("solar-panel-warranty").value = "25 Years"
+
+            // calculate how much quantity is needed
+            solarPanelPower = parseFloat(solarPanelData.solar_panel.power.split(" ")[0])
+            sysCap = parseFloat(document.getElementById("sys-cap").value)
+            qty = 1
+            while (qty*solarPanelPower < sysCap) {
+                qty += 1
+            } 
+            document.getElementById("solar-panel-quantity").value = qty.toString()
+            document.getElementById("out-solar-panel-quantity").value = qty.toString()
         }
     }
     catch(error) {
@@ -198,12 +204,27 @@ async function checkInverter() {
             document.getElementById("inverter-eff").value = "92.50 %"
             document.getElementById("inverter-power").value = inverterData.inverter.power
             document.getElementById("inverter-warranty").value = inverterData.inverter.warranty
+
+            // calculate how much quantity is needed
+            inverterPower = parseFloat(inverterData.inverter.power.split(" ")[0])
+            sysCap = parseFloat(document.getElementById("sys-cap").value)/1000
+
+            qty = 1
+            while (qty*inverterPower < sysCap) {
+                qty += 1
+            } 
+            document.getElementById("inverter-quantity").value = qty.toString()
+            document.getElementById("out-inverter-quantity").value = qty.toString()
         }
     }
     catch(error) {
         console.log(error)
         alert("Invalid in getting inverter data")        
     }
+}
+
+async function getQuotation() {
+    console.log("sending quotation to db")
 }
 
 function roundToTwo(num) {    
