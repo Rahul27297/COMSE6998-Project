@@ -31,16 +31,19 @@ async function loadQuotationRequests() {
             alert("Invalid in calculating economics")
         } else {
             // go through the quotations
-            var i = 0
-            for (i=0; i<qtyLists.quotation_list.length; i++) {
+            var i = qtyLists.quotation_list.length-1
+            for (i=qtyLists.quotation_list.length-1; i>=0; i--) {
                 var date = qtyLists.quotation_list[i].date
                 var quoteId = qtyLists.quotation_list[i].user_id
                 var location = qtyLists.quotation_list[i].location
                 var solarPanel = qtyLists.quotation_list[i].solar_panel
                 var inverter = qtyLists.quotation_list[i].inverter
                 var estPrice = "$ "+ qtyLists.quotation_list[i].price
-            
-                addQtyRow(date, quoteId, location, solarPanel, inverter, estPrice)
+                
+
+                var num = i+1
+
+                addQtyRow(num, date, quoteId, location, solarPanel, inverter, estPrice)
             }
         }
     }
@@ -48,15 +51,20 @@ async function loadQuotationRequests() {
         console.log(error)
         alert("Invalid in getting solar panel data")        
     }
-
-
-
-
-    //addCartRow(date, quoteId, location, solarPanel, inverter, estPrice)
 }
 
 async function sendBid() {
-    console.log("sending the bid")
+    // get the data from the input fields
+    var vendorID = document.getElementById("email").value
+    var companyName = document.getElementById("name").value
+    var address = document.getElementById("address").value
+    /*
+    var street = document.getElementById("vendor-street").value
+    var city = document.getElementById("vendor-city").value
+    var state = document.getElementById("vendor-state").value
+    var zipCode = document.getElementById("vendor-zipcode").value
+    var address = street + ", " + city + ", " + state + ", " + zipCode
+    */
 
     var qtyLists = []
     // see the checkboxes
@@ -68,7 +76,33 @@ async function sendBid() {
     }
     console.log(qtyLists)
 
-    // send the qtyLists filled with quotation IDs to the backend
+    // hard coded data needs to change
+    const data = {
+        user_id_lists: qtyLists,
+        vendor_id: vendorID,
+        vendor_company_name: companyName,
+        vendor_address: address
+    }
+
+    console.log(JSON.stringify(data))
+    console.log(data)
+
+    try {
+        url = "https://moz3yfg111.execute-api.us-east-1.amazonaws.com/dev3/uploadbid/"
+        const response = await fetch(url, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(data),
+        });
+        const json = await response.json();
+        console.log(json);
+    }
+    catch(error) {
+        console.log(error)
+        alert("Error in uploading quotation request")
+    }
 }
 
 function clearQuotations () {
@@ -79,7 +113,7 @@ function clearQuotations () {
 
 }
 
-function addQtyRow (date, quoteId, location, solarPanel, inverter, estPrice) {
+function addQtyRow (num, date, quoteId, location, solarPanel, inverter, estPrice) {
     var table = document.getElementById("quotation-requests")
     console.log(table)
     var row = table.insertRow(0)
@@ -89,6 +123,9 @@ function addQtyRow (date, quoteId, location, solarPanel, inverter, estPrice) {
     row.innerHTML =
     `
     <tr>
+        <th class="pl-0 border-0" scope="row">
+            <div class="media-body ml-3"><strong class="h6"><a class="quote-entry reset-anchor animsition-link" >${num}</a></strong></div>
+        </th>
         <th class="pl-0 border-0" scope="row">
             <div class="media-body ml-3"><strong class="h6"><a class="reset-anchor animsition-link" >${date}</a></strong></div>
         </th>
@@ -111,6 +148,3 @@ function addQtyRow (date, quoteId, location, solarPanel, inverter, estPrice) {
     </tr>
     `;
 }
-
-
-loadVendorProfile()

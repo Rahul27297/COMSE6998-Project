@@ -113,18 +113,23 @@
             <div class="card border-1 shadow-sm mb-4 mb-lg-5 p-2 p-lg-0">
               <div class="card-body p-lg-5">
                 <h2 class="h3 mb-4">Bids</h2>
-
+                <!-- Refresh Button-->
+                <div class="px-4 py-3">
+                  <div class="row align-items-center text-center">
+                      <div class="col-md-6 text-md-left"><button onclick="loadBids()" class="btn btn-outline-dark btn-sm"> Get Bids<i class="fas ml-2"></i></button></div>
+                  </div>
+                </div>
                 <!--The Table-->
                 <div class="table-responsive mb-4">
                     <table class="table">
                     <thead class="bg-light">
                         <tr>
                         <th class="border-0" scope="col"> <strong class="text-small text-uppercase">Date</strong></th>
-                        <th class="border-0" scope="col"> <strong class="text-small text-uppercase">Quotation ID</strong></th>
+                        <th class="border-0" scope="col"> <strong class="text-small text-uppercase">Vendor ID</strong></th>
+                        <th class="border-0" scope="col"> <strong class="text-small text-uppercase">Company Name</strong></th>
                         <th class="border-0" scope="col"> <strong class="text-small text-uppercase">Location</strong></th>
-                        <th class="border-0" scope="col"> <strong class="text-small text-uppercase">Solar Panel</strong></th>
-                        <th class="border-0" scope="col"> <strong class="text-small text-uppercase">Inverter</strong></th>
-                        <th class="border-0" scope="col"> <strong class="text-small text-uppercase">Est. Price</strong></th>
+                        <th class="border-0" scope="col"> <strong class="text-small text-uppercase">User ID</strong></th>
+                        <th class="border-0" scope="col"> <strong class="text-small text-uppercase">Price</strong></th>
                         <th class="border-0" scope="col"> </th>
                         </tr>
                     </thead>
@@ -135,7 +140,7 @@
                <!-- Update Button-->
                <div class="bg-light px-4 py-3">
                     <div class="row align-items-center text-center">
-                        <div class="col-md-6 text-md-left"><button onclick="sendBid()" class="btn btn-outline-dark btn-sm"> Send Bid<i class="fas fa-long-arrow-alt-right ml-2"></i></button></div>
+                        <div class="col-md-6 text-md-left"><button onclick="acceptBid()" class="btn btn-outline-dark btn-sm"> Accept!<i class="fas fa-long-arrow-alt-right ml-2"></i></button></div>
                     </div>
                 </div>
               </div>
