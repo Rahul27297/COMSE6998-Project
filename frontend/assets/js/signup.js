@@ -22,6 +22,7 @@ $(document).ready(function () {
         var inputCity = document.getElementById("inputCity").value;
         var inputState = document.getElementById("inputState").value;
         var inputZip = document.getElementById("inputZip").value;
+        var type = document.getElementById("userType").value;
        
         var body = {
             "username": inputEmail,
@@ -31,7 +32,8 @@ $(document).ready(function () {
             "street": inputHouse,
             "city": inputCity,
             "state": inputState,
-            "zip": inputZip
+            "zip": inputZip,
+            "type": type
         };
         console.log(body);
         callSignUpAPI(body).then((response) => {
