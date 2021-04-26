@@ -22,6 +22,7 @@ $(document).ready(function () {
         var inputCity = document.getElementById("inputCity").value;
         var inputState = document.getElementById("inputState").value;
         var inputZip = document.getElementById("inputZip").value;
+        var type = document.getElementById("userType").value;
        
         var body = {
             "username": inputEmail,
@@ -31,7 +32,8 @@ $(document).ready(function () {
             "street": inputHouse,
             "city": inputCity,
             "state": inputState,
-            "zip": inputZip
+            "zip": inputZip,
+            "type": type
         };
         console.log(body);
         callSignUpAPI(body).then((response) => {
@@ -94,12 +96,14 @@ $(document).ready(function () {
         console.log(body);
         callLoginAPI(body).then((response) => {
             console.log("Recieved Response");
-            console.log(response);
+            console.log(response.data.data.access_token);
+            var access_token = response.data.data.access_token;
             if (response.data.error == false) {
                 document.getElementById("success-alert").style.display = "block";
                 document.getElementById("success-alert").innerHTML = "Login Successful!";
                 sessionStorage.setItem("userEmail", inputEmail);
                 sessionStorage.setItem("userLoggedIn", "1");
+                sessionStorage.setItem("access_token", access_token);
                 window.location.href = './index.html';
             }
         });

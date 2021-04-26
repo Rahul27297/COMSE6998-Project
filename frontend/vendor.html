@@ -55,7 +55,8 @@
                   </li> -->
                 </ul>
                 <ul class="navbar-nav ml-auto">               
-                  <li class="nav-item"><a class="nav-link" href="#"> <i class="fas fa-user-alt mr-1 text-gray"></i>Login</a></li>
+                  <li class="nav-item"><a class="nav-link userName" id="userName"> <i class="fas fa-user-alt mr-1 text-gray"></i></a></li>
+                  
                 </ul>
               </div>
             </nav>
@@ -77,59 +78,28 @@
               <div class="card-body p-lg-5">
                 <h4 class="h4 mb-4">Vendor Profile</h4>
                 <div class="row">
-                  <div class="col-md-6">
+                  <div class="col-md-12">
                     <div class="form-group">
-                    <label>Vendor ID</label>
-                    <input id="vendor-id" type="text" class="form-control">
+                    <label>Vendor Email</label>
+                    <input id="email" type="text" class="form-control" readonly>
                     </div>
                 </div>
-                <div class="col-md-6">
-                    <div class="form-group">
-                    <label>Company Name</label>
-                    <input id="company-name" type="text" class="form-control">
-                    </div>
-                </div>
-                  <div class="col-md-6">
-                      <div class="form-group">
-                      <label>First Name</label>
-                      <input id="first-name" type="text" class="form-control">
-                      </div>
-                  </div>
-                  <div class="col-md-6">
-                      <div class="form-group">
-                      <label>Last Name</label>
-                      <input id="last-name" type="text" class="form-control">
-                      </div>
-                  </div>
                 </div>
                 <div class="row">
-                  <div class="col-md-6">
-                      <div class="form-group">
-                      <label>Street</label>
-                      <input id="vendor-street" type="text" class="form-control">
-                      </div>
-                  </div>
-                  <div class="col-md-6">
-                      <div class="form-group">
-                      <label>City</label>
-                      <input id="vendor-city" type="text" class="form-control">
-                      </div>
-                  </div>
-                  <div class="col-md-6">
+                <div class="col-md-12">
                     <div class="form-group">
-                    <label>State</label>
-                    <input id="vendor-state" type="text" class="form-control">
+                    <label>Company Name</label>
+                    <input id="name" type="text" class="form-control" readonly> 
                     </div>
-                  </div>
-                  <div class="col-md-6">
-                    <div class="form-group">
-                    <label>Zipcode</label>
-                    <input id="vendor-zipcode" type="text" class="form-control">
-                    </div>
-                  </div>
                 </div>
-                <div style="text-align: right;">
-                  <a class="btn btn-dark" style="color: white;" class="scroll" onclick="updateVendorProfile()">Update</a>
+                </div>
+                <div class="row">
+                  <div class="col-md-12">
+                      <div class="form-group">
+                      <label>Address</label>
+                      <input id="address" type="text" class="form-control" readonly>
+                      </div>
+                  </div>
                 </div>
               </div>
             </div>
@@ -230,6 +200,7 @@
           });
         });
       </script>
+      <script src="assets/js/user.js"></script>
       <script src="assets/js/vendor.js"></script>
       <!-- FontAwesome CSS - loading as last, so it doesn't block rendering-->
       <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
