@@ -33,12 +33,12 @@ async function loadQuotationRequests() {
             // go through the quotations
             var i = 0
             for (i=0; i<qtyLists.quotation_list.length; i++) {
-                var date = "sample"
-                var quoteId = qtyLists.quotation_list[i].quotation_id
+                var date = qtyLists.quotation_list[i].date
+                var quoteId = qtyLists.quotation_list[i].user_id
                 var location = qtyLists.quotation_list[i].location
                 var solarPanel = qtyLists.quotation_list[i].solar_panel
                 var inverter = qtyLists.quotation_list[i].inverter
-                var estPrice = qtyLists.quotation_list[i].price
+                var estPrice = "$ "+ qtyLists.quotation_list[i].price
             
                 addQtyRow(date, quoteId, location, solarPanel, inverter, estPrice)
             }
