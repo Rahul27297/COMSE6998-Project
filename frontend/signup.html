@@ -1,0 +1,135 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="assets/css/login.css">
+
+    <title>Solar Central</title>
+  </head>
+  <body>
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-10 col-xl-9 mx-auto">
+          <div class="card card-signin flex-row my-5">
+            <div class="card-img-left d-none d-md-flex">
+
+            </div>
+            <div class="card-body">
+              <div class="alert alert-success" role="alert" id="success-alert">
+              </div>
+              <h5 class="card-title text-center">Register</h5>
+              <div class="form-signin" id="form-signup">
+
+                <div class="form-label-group">
+
+                  <input type="email" id="inputEmail" class="form-control" placeholder="Email address" required>
+                  <label for="inputEmail">Email address</label>
+                </div>
+                
+                <div class="form-label-group">
+                  <input type="password" id="inputPassword" class="form-control" placeholder="Password" required>
+                  <label for="inputPassword">Password</label>
+                </div>
+                
+                <div class="form-label-group">
+                   
+                  <input type="password" id="inputConfirmPassword" class="form-control" placeholder="Password" required>
+                  <label for="inputConfirmPassword">Confirm password</label>
+                </div>
+
+                <div class="form-label-group">
+                  <input type="text" id="inputName" class="form-control" placeholder="Name" required autofocus>
+                  <label for="inputName">Name</label>
+                </div>
+
+                <div class="form-label-group">
+                  <input type="text" id="inputHouse" class="form-control" placeholder="5B 235 West 109th Street" required autofocus>
+                  <label for="lastname">House No., Street</label>
+                </div>
+
+                <div class="form-label-group">
+                  <input type="text" id="inputCity" class="form-control" placeholder="City" required autofocus>
+                  <label for="lastname">City</label>
+                </div>
+  
+                <div class="form-label-group">
+                  <input type="text" id="inputState" class="form-control" placeholder="State" required autofocus>
+                  <label for="lastname">State</label>
+                </div>
+
+                <div class="form-label-group">
+                  <input type="text" id="inputZip" class="form-control" placeholder="ZIP" required autofocus>
+                  <label for="lastname">Zipcode</label>
+                </div>
+
+                <button class="btn btn-lg btn-primary btn-block text-uppercase signup-button">Register</button>
+                <button class="btn btn-lg btn-primary btn-block text-uppercase login-button">Login</button>
+              </div>
+              <div class="form-signin" id="form-signup-confirm">
+
+                <div class="form-label-group">
+
+                  <input type="email" id="inputEmailConfirm" class="form-control" placeholder="Email address" required>
+                  <label for="inputEmailConfirm">Email address</label>
+                </div>
+                <div class="form-label-group">
+                  <input type="password" id="inputPasswordConfirm" class="form-control" placeholder="Password" required>
+                  <label for="inputPasswordConfirm">Password</label>
+                </div>
+                
+                <div class="form-label-group">
+
+                  <input type="text" id="inputCode" class="form-control" placeholder="xxxxxx" required>
+                  <label for="inputCode">Verification Code</label>
+                </div>
+                <button class="btn btn-lg btn-primary btn-block text-uppercase verify-button">Verify</button>
+                <button class="btn btn-lg btn-primary btn-block text-uppercase login-button">Login</button>
+                </div>
+                <div class="form-signin" id="form-login">
+
+                  <div class="form-label-group">
+  
+                    <input type="email" id="inputEmailLogin" class="form-control" placeholder="Email address" required>
+                    <label for="inputEmailLogin">Email address</label>
+                  </div>
+                  <div class="form-label-group">
+                    <input type="password" id="inputPasswordLogin" class="form-control" placeholder="Password" required>
+                    <label for="inputPasswordLogin">Password</label>
+                  </div>
+                  <button class="btn btn-lg btn-primary btn-block text-uppercase login-button">Login</button>
+                  </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>    
+    
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    <script type="text/javascript" src="sdk/lib/axios/dist/axios.standalone.js"></script>
+    <script type="text/javascript" src="sdk/lib/CryptoJS/rollups/hmac-sha256.js"></script>
+    <script type="text/javascript" src="sdk/lib/CryptoJS/rollups/sha256.js"></script>
+    <script type="text/javascript" src="sdk/lib/CryptoJS/components/hmac.js"></script>
+    <script type="text/javascript" src="sdk/lib/CryptoJS/components/enc-base64.js"></script>
+    <script type="text/javascript" src="sdk/lib/url-template/url-template.js"></script>
+    <script type="text/javascript" src="sdk/lib/apiGatewayCore/sigV4Client.js"></script>
+    <script type="text/javascript" src="sdk/lib/apiGatewayCore/apiGatewayClient.js"></script>
+    <script type="text/javascript" src="sdk/lib/apiGatewayCore/simpleHttpClient.js"></script>
+    <script type="text/javascript" src="sdk/lib/apiGatewayCore/utils.js"></script>
+    <script type="text/javascript" src="sdk/apigClient.js"></script>
+    <script>
+
+      var sdk = apigClientFactory.newClient({});
+
+    </script>
+    <script src="assets/js/signup.js"></script>
+  </body>
+</html>
