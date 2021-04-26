@@ -99,7 +99,7 @@ $(document).ready(function () {
                 document.getElementById("success-alert").style.display = "block";
                 document.getElementById("success-alert").innerHTML = "Login Successful!";
                 sessionStorage.setItem("userEmail", inputEmail);
-                sessionStorage.setItem("userLoggedIn", inputEmail);
+                sessionStorage.setItem("userLoggedIn", "1");
                 window.location.href = './index.html';
             }
         });

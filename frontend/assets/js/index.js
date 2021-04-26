@@ -5,7 +5,7 @@ $(document).ready(function () {
     var userEmail = sessionStorage.getItem("userEmail");
 
     console.log(userEmail);
-    if (userLoggedIn == "0")
+    if (userLoggedIn != "1")
         window.location.href = './signup.html';
     else
         document.getElementById("userName").innerHTML = "Hello " + userName;
