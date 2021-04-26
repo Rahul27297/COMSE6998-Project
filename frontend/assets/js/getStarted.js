@@ -231,9 +231,9 @@ async function sendQuotationReq() {
     const data = {
         // this profile info will need to be changed to user profile data
         profile: {
-            user_id: "aw3306@columbia.edu",
-            first_name: "Aditya",
-            last_name: "Wikara"
+            user_id: "jeffbezos@gmail.com",
+            first_name: "Jeff",
+            last_name: "Bezos"
         },
         address: {
             street: document.getElementById("out-street").value,

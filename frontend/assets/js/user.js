@@ -41,7 +41,7 @@ async function loadBids() {
     clearBids()
 
     // get the user id, which is the email
-    userId = document.getElementById("user-id").value
+    userId = document.getElementById("email").value
 
     // get the quotation data
     url = "https://moz3yfg111.execute-api.us-east-1.amazonaws.com/dev3/getbids/?user_id="+userId
@@ -82,6 +82,25 @@ async function acceptBid() {
     // delete the bids from the bids db
     // send thank you email to the user
     // send email to the vendor
+    userID = document.getElementById("email").value
+    url = "https://moz3yfg111.execute-api.us-east-1.amazonaws.com/dev3/acceptbid/?user_id="+userID
+    console.log(url)
+    try {
+        const response = await fetch(url);
+        const respJson = await response.json();
+        console.log(respJson)
+
+        // error check the response
+        if (respJson.errorType) {
+            alert("Error in updating database")
+        } else {
+            console.log("database updated, email sent")
+        }
+    }
+    catch(error) {
+        console.log(error)
+        alert("Error in updating database")        
+    }
 }
 
 function clearBids () {
@@ -129,4 +148,4 @@ function addBidRow (date, user_id, address, vendor_id, company_name, price) {
 
 
 // need to change from hardcode
-loadUserProfile
+//loadUserProfile
