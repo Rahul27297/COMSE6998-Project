@@ -31,8 +31,8 @@ async function loadQuotationRequests() {
             alert("Invalid in calculating economics")
         } else {
             // go through the quotations
-            var i = qtyLists.quotation_list.length-1
-            for (i=qtyLists.quotation_list.length-1; i>=0; i--) {
+            var i = 0
+            for (i=0; i<qtyLists.quotation_list.length; i++) {
                 var date = qtyLists.quotation_list[i].date
                 var quoteId = qtyLists.quotation_list[i].user_id
                 var location = qtyLists.quotation_list[i].location
@@ -41,9 +41,7 @@ async function loadQuotationRequests() {
                 var estPrice = "$ "+ qtyLists.quotation_list[i].price
                 
 
-                var num = i+1
-
-                addQtyRow(num, date, quoteId, location, solarPanel, inverter, estPrice)
+                addQtyRow(date, quoteId, location, solarPanel, inverter, estPrice)
             }
         }
     }
@@ -113,7 +111,7 @@ function clearQuotations () {
 
 }
 
-function addQtyRow (num, date, quoteId, location, solarPanel, inverter, estPrice) {
+function addQtyRow (date, quoteId, location, solarPanel, inverter, estPrice) {
     var table = document.getElementById("quotation-requests")
     console.log(table)
     var row = table.insertRow(0)
@@ -123,9 +121,6 @@ function addQtyRow (num, date, quoteId, location, solarPanel, inverter, estPrice
     row.innerHTML =
     `
     <tr>
-        <th class="pl-0 border-0" scope="row">
-            <div class="media-body ml-3"><strong class="h6"><a class="quote-entry reset-anchor animsition-link" >${num}</a></strong></div>
-        </th>
         <th class="pl-0 border-0" scope="row">
             <div class="media-body ml-3"><strong class="h6"><a class="reset-anchor animsition-link" >${date}</a></strong></div>
         </th>
