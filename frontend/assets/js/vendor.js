@@ -56,7 +56,14 @@ async function loadQuotationRequests() {
 }
 
 async function sendBid() {
-    console.log("sending the bid")
+    // get the data from the input fields
+    var vendorID = document.getElementById("vendor-id").value
+    var companyName = document.getElementById("company-name").value
+    var street = document.getElementById("vendor-street").value
+    var city = document.getElementById("vendor-city").value
+    var state = document.getElementById("vendor-state").value
+    var zipCode = document.getElementById("vendor-zipcode").value
+    var address = street + ", " + city + ", " + state + ", " + zipCode
 
     var qtyLists = []
     // see the checkboxes
@@ -68,7 +75,33 @@ async function sendBid() {
     }
     console.log(qtyLists)
 
-    // send the qtyLists filled with quotation IDs to the backend
+    // hard coded data needs to change
+    const data = {
+        user_id_lists: qtyLists,
+        vendor_id: vendorID,
+        vendor_company_name: companyName,
+        vendor_address: address
+    }
+
+    console.log(JSON.stringify(data))
+    console.log(data)
+
+    try {
+        url = "https://moz3yfg111.execute-api.us-east-1.amazonaws.com/dev3/uploadbid/"
+        const response = await fetch(url, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(data),
+        });
+        const json = await response.json();
+        console.log(json);
+    }
+    catch(error) {
+        console.log(error)
+        alert("Error in uploading quotation request")
+    }
 }
 
 function clearQuotations () {
