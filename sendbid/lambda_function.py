@@ -4,6 +4,7 @@ import requests
 import boto3
 from botocore.exceptions import ClientError
 import datetime
+import os
 
 from email import encoders
 from email.mime.base import MIMEBase
@@ -23,16 +24,23 @@ def send_email_with_attachment(email, name):
 		"Hello, \nYou have a new bid for your request placed at Solar Central. \nPlease find the bid submitted by the vendor as an attachment to this email.",
 		"plain")
 	msg.attach(body)
+	print(msg)
+	filename = "/tmp/" + name  # In same directory as script
+	print(filename)
 
-	filename = name  # In same directory as script
-
-	with open(filename, "rb") as attachment:
-		part = MIMEApplication(attachment.read())
-		part.add_header("Content-Disposition",
-						"attachment",
-						filename=filename)
+	part = MIMEApplication(open(filename, 'r', encoding = "ISO-8859-1").read())
+	print(part)
+	print("part printed")
+	part.add_header('Content-Disposition', 'attachment', filename=name)
 	msg.attach(part)
-
+	print(msg)
+	"""
+	
+	part = MIMEApplication(open(filename, encoding = "ISO-8859-1").read())
+	part.add_header('Content-Disposition','attachment; filename="%s"' % os.path.basename(filename))
+	msg.attach(part)
+	print(msg)
+	"""
 	# Convert message to string and send
 	ses_client = boto3.client("ses", region_name="us-east-1")
 	response = ses_client.send_raw_email(
@@ -40,6 +48,7 @@ def send_email_with_attachment(email, name):
 		Destinations=[email],
 		RawMessage={"Data": msg.as_string()}
 	)
+	print("SES response")
 	print(response)
 
 
@@ -65,8 +74,12 @@ def lambda_handler(event, context):
         data['price'] = user_id_data['economics']['system_cost']
         data['address'] = vendor_address
         bids.append(data)
-        JSONtoPDF(data)
-        send_email_with_attachment(user_id_data['user_id'], vendor_id + "_" + user_id_data['user_id'] + ".pdf")
+        user_id_data['vendor_id'] = vendor_id
+        print(user_id_data)
+        JSONtoPDF(user_id_data)
+        send_email_with_attachment(user_id_data['user_id'], 
+        user_id_data['profile']['first_name']+ "_"+ 
+        user_id_data['profile']['last_name'] +'_Solar_Quotation' +".pdf")#vendor_id + "_" + user_id_data['user_id'] + ".pdf")
 
     # insert to the database
     insert_data(bids)
@@ -77,8 +90,8 @@ def lambda_handler(event, context):
 
 
 def lookup_data(key, db=None, table='quotations-requests-db'):
-    if not db:
-        db = boto3.resource('dynamodb')
+	if not db:
+		db = boto3.resource('dynamodb')
 	table = db.Table(table)
 	try:
 		response = table.get_item(Key=key)
@@ -100,19 +113,19 @@ def insert_data(data_list, db=None, table='bids-db'):
 	return response
 
 
+
 class PDF(FPDF):
 	def header(self):
 		# Logo
-		self.image('./solar.jpeg', 10, 8, 33)
+		# self.image('./solar.jpeg', 10, 8, 33)
 		# Arial bold 15
 		self.set_font('Arial', 'B', 15)
 		# Move to the right
 		self.cell(80)
 		# Title
-		self.cell(30, 10, 'Solar Coorporation', 1, 0, 'C')
+		self.cell(30, 10, 'Solar Central', 1, 0, 'C')
 		# Line break
 		self.ln(20)
-		print("hello i am called")
 
 	# Page footer
 	def footer(self):
@@ -124,36 +137,30 @@ class PDF(FPDF):
 		self.cell(0, 10, 'Page ' + str(self.page_no()) + '/{nb}', 0, 0, 'C')
 
 
-def error_exit(message):
-	sys.stderr.write(message)
-	sys.exit(1)
 
 def JSONtoPDF(json_data):
-		# Get the data values from the JSON string json_data.
-	try:
-		#data = json.loads(json_data)
-		pdf = FPDF()
-		pdf.alias_nb_pages()
-		pdf.add_page()
-		pdf.set_font("Arial", size = 15)
-		pdf.cell(200, 10, txt = "Solar Panels Hub", 
-			 ln = 5, align = 'C')
-		pdf.cell(200, 20, txt = "Quotation for Solar Panel Installation",
-			 ln = 6, align = 'C')
-		for i, (key,val) in enumerate(json_data.items()):
-			pdf.cell(100, 15, txt = key +" : "+ val,
-			 	ln = i+10, align = 'L')
-		
-		# save the pdf with name .pdf
-		pdf.output(json_data['vendor_id']+"_"+json_data['user_id']+".pdf")
-
-	except Exception as e:
-		error_exit("Error generating file: {}".format(e.message))
-
-    
-def testJSONtoPDF():
-	f = open('data.json')	 
-	data = json.load(f)
-	#print(data)
-	JSONtoPDF(data)
-
+	# Get the data values from the JSON string json_data.
+	#try:
+	#data = json.loads(json_data)
+	pdf = FPDF()
+	pdf.alias_nb_pages()
+	pdf.add_page()
+	pdf.set_font("Arial", size = 15)
+	pdf.cell(200, 10, txt = "Solar Central", ln = 1, align = 'C')
+	pdf.cell(220, 20, txt = "Quotation for Solar Panel Installation", ln = 1, align = 'C')
+	data_dict = {}
+	for key, val in json_data.items():
+		if isinstance(val, dict):
+			for k, v in val.items():
+				data_dict[k]=v
+		else:
+			data_dict[key] = val
+	for key, val in data_dict.items():
+		pdf.cell(150, 15, txt = ((str(key)).upper()).replace('_',' ') +" : "+ str(val), ln = 1, align = 'L')
+	
+	
+	# save the pdf with name .pdf
+	#print("/tmp/" + json_data['vendor_id']+"_"+json_data['user_id']+".pdf")
+	pdf.output("/tmp/" + data_dict['first_name']+ "_"+ data_dict['last_name'] +'_Solar_Quotation' +".pdf", 'F')
+	
+	
