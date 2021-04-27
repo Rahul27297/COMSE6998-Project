@@ -86,9 +86,11 @@ async function getTotalCost() {
         // compute the total cost
         var solarPanelPriceRaw = totalCost.solar_panel.price
         var solarPanelPrice = parseFloat(solarPanelPriceRaw.substring(1,solarPanelPriceRaw.length))
+        var solarPanelQty = parseInt(document.getElementById("out-solar-panel-quantity").value)
         var inverterPriceRaw = totalCost.inverter.price
         var inverterPrice = parseFloat(inverterPriceRaw.substring(1,inverterPriceRaw.length))
-        var systemCost = roundToTwo((solarPanelPrice + inverterPrice)*1.5)
+        var inverterQty = parseInt(document.getElementById("out-inverter-quantity").value)
+        var systemCost = roundToTwo(((solarPanelPrice*solarPanelQty) + (inverterPrice*inverterQty))*2.5)
 
         // error check the response
         if (totalCost.errorType) {
@@ -289,6 +291,8 @@ async function sendQuotationReq() {
         const json = await response.json();
         console.log(json);
         alert("Quotation Sent!")
+
+        // clear the fields
     }
     catch(error) {
         console.log(error)
