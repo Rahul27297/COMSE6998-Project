@@ -288,6 +288,7 @@ async function sendQuotationReq() {
         });
         const json = await response.json();
         console.log(json);
+        alert("Quotation Sent!")
     }
     catch(error) {
         console.log(error)
