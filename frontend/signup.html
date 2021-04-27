@@ -8,10 +8,13 @@
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link rel="stylesheet" href="assets/css/login.css">
+    <link rel="stylesheet" href="assets/css/custom.css">
 
     <title>Solar Central</title>
   </head>
   <body>
+
+
     <div class="container">
       <div class="row">
         <div class="col-lg-10 col-xl-9 mx-auto">
@@ -20,9 +23,12 @@
               <h1 style="margin-left: 15%;margin-top: 15%;">Solar Central</h1>
             </div>
             <div class="card-body">
-              <div class="alert alert-success" role="alert" id="success-alert">
-              </div>
               <h5 class="card-title text-center">Register</h5>
+                          <div class="alert alert-success" role="alert" id="success-alert">
+              </div>
+              <div class="alert alert-danger emptyFieldsAlert" id="empty-alert" role="alert">
+                Please fill in all fields!
+              </div>
               <div class="form-signin" id="form-signup">
                 <input type="hidden" id="userType" class="form-control" value="customer">
                 <div class="form-label-group">
@@ -67,7 +73,8 @@
                   <label for="inputZip">Zipcode</label>
                 </div>
 
-                <button class="btn btn-dark btn-block text-uppercase signup-button">Sign Up</button>
+                <button class="btn btn-dark btn-block text-uppercase signup-button" id="signup-button">Sign Up</button>
+                <button class="btn btn-dark btn-block text-uppercase" id="loader_signup"><div class="loader" style="margin-left: 45%;"></div></button>
                 <button class="btn btn-transparent btn-block text-uppercase login-button">Already a User? Login</button>
               </div>
               <div class="form-signin" id="form-signup-confirm">
@@ -87,7 +94,8 @@
                   <input type="text" id="inputCode" class="form-control" placeholder="xxxxxx" required>
                   <label for="inputCode">Verification Code</label>
                 </div>
-                <button class="btn btn-dark btn-block text-uppercase verify-button">Verify</button>
+                <button class="btn btn-dark btn-block text-uppercase verify-button" id="verify-button">Verify</button>
+                <button class="btn btn-dark btn-block text-uppercase" id="loader_verify"><div class="loader" style="margin-left: 45%;"></div></button>
                 <button class="btn btn-dark btn-block text-uppercase login-button">Login</button>
                 </div>
                 <div class="form-signin" id="form-login">
@@ -101,7 +109,8 @@
                     <input type="password" id="inputPasswordLogin" class="form-control" placeholder="Password" required>
                     <label for="inputPasswordLogin">Password</label>
                   </div>
-                  <button class="btn btn-dark btn-block text-uppercase login-button">Login</button>
+                  <button class="btn btn-dark btn-block text-uppercase login-button" id="login-button">Login</button>
+                  <button class="btn btn-dark btn-block text-uppercase" id="loader_login"><div class="loader" style="margin-left: 45%;"></div></button>
                   <button class="btn btn-transparent btn-block text-uppercase signup-button">New User? SignUp</button>
                   </div>
             </div>

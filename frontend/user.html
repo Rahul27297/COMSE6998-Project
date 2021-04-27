@@ -220,5 +220,21 @@
       <!-- FontAwesome CSS - loading as last, so it doesn't block rendering-->
       <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
     </div>
+        <script type="text/javascript" src="sdk/lib/axios/dist/axios.standalone.js"></script>
+    <script type="text/javascript" src="sdk/lib/CryptoJS/rollups/hmac-sha256.js"></script>
+    <script type="text/javascript" src="sdk/lib/CryptoJS/rollups/sha256.js"></script>
+    <script type="text/javascript" src="sdk/lib/CryptoJS/components/hmac.js"></script>
+    <script type="text/javascript" src="sdk/lib/CryptoJS/components/enc-base64.js"></script>
+    <script type="text/javascript" src="sdk/lib/url-template/url-template.js"></script>
+    <script type="text/javascript" src="sdk/lib/apiGatewayCore/sigV4Client.js"></script>
+    <script type="text/javascript" src="sdk/lib/apiGatewayCore/apiGatewayClient.js"></script>
+    <script type="text/javascript" src="sdk/lib/apiGatewayCore/simpleHttpClient.js"></script>
+    <script type="text/javascript" src="sdk/lib/apiGatewayCore/utils.js"></script>
+    <script type="text/javascript" src="sdk/apigClient.js"></script>
+    <script>
+
+      var sdk = apigClientFactory.newClient({});
+
+    </script>
   </body>
 </html>

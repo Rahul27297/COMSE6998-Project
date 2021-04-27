@@ -4,6 +4,11 @@ $(document).ready(function () {
    document.getElementById("form-signup-confirm").style.display = "none";
    document.getElementById("form-login").style.display = "none";
    document.getElementById("success-alert").style.display = "none";
+   document.getElementById("empty-alert").style.display = "none";
+   document.getElementById("loader_signup").style.display = "none";
+   document.getElementById("loader_verify").style.display = "none";
+   document.getElementById("loader_login").style.display = "none";
+
    var login_display = 0;
    var signup_display = 1;
 
@@ -17,13 +22,26 @@ $(document).ready(function () {
         console.log("Signup");
         var inputEmail = document.getElementById("inputEmail").value;
         var inputPassword = document.getElementById("inputPassword").value;
+        var inputConfirmPassword = document.getElementById("inputConfirmPassword").value;
         var inputName = document.getElementById("inputName").value;
         var inputHouse = document.getElementById("inputHouse").value;
         var inputCity = document.getElementById("inputCity").value;
         var inputState = document.getElementById("inputState").value;
         var inputZip = document.getElementById("inputZip").value;
         var type = document.getElementById("userType").value;
+        
+        if (inputEmail == "" || inputPassword == "" || inputName == "" || inputHouse == "" || inputCity == "" || inputState == "" || inputZip == "") {
+            document.getElementById("empty-alert").style.display = "block";
+            return;
+        }
+
+        if (!(/^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/.test(inputEmail))) {
+            window.alert("Invalid Email!");
+        }
        
+        if (inputPassword != inputConfirmPassword) {
+            window.alert("Passwords do not match!");
+        }
         var body = {
             "username": inputEmail,
             "password": inputPassword,
@@ -36,6 +54,8 @@ $(document).ready(function () {
             "type": type
         };
         console.log(body);
+        document.getElementById("signup-button").style.display = "none";
+        document.getElementById("loader_signup").style.display = "block";
         callSignUpAPI(body).then((response) => {
             console.log("Recieved Response");
             console.log(response.data.message);
@@ -46,6 +66,9 @@ $(document).ready(function () {
                 document.getElementById("form-signup-confirm").style.display = "block";
                 document.getElementById("success-alert").style.display = "block";
                 document.getElementById("success-alert").innerHTML = "SignUp Successful! Please check your email for verification code.";
+            } else {
+                document.getElementById("signup-button").style.display = "block";
+                document.getElementById("loader_signup").style.display = "none";
             }
         });
     }
@@ -68,12 +91,17 @@ $(document).ready(function () {
             "code": inputCode,
         };
         console.log(body);
+        document.getElementById("verify-button").style.display = "none";
+        document.getElementById("loader_verify").style.display = "block";
         callSignUpConfirmAPI(body).then((response) => {
             console.log("Recieved Response");
             console.log(response);
             if (response.data.username == inputEmail) {
                 document.getElementById("success-alert").style.display = "block";
                 document.getElementById("success-alert").innerHTML = "Verification Successful! Please login to continue";
+            } else {
+                document.getElementById("verify-button").style.display = "block";
+                document.getElementById("loader_verify").style.display = "none";
             }
         });
     }
@@ -116,6 +144,8 @@ $(document).ready(function () {
             "password": inputPassword
         };
         console.log(body);
+        document.getElementById("login-button").style.display = "none";
+        document.getElementById("loader_login").style.display = "block";
         callLoginAPI(body).then((response) => {
             console.log("Recieved Response");
             console.log(response.data.data.access_token);
@@ -127,6 +157,10 @@ $(document).ready(function () {
                 sessionStorage.setItem("userLoggedIn", "1");
                 sessionStorage.setItem("access_token", access_token);
                 getUserInfo(access_token);
+            } 
+            else {
+                document.getElementById("login-button").style.display = "block";
+                document.getElementById("loader_login").style.display = "none";
             }
         });
     }
@@ -135,11 +169,15 @@ $(document).ready(function () {
         document.getElementById("form-login").style.display = "block";
         document.getElementById("form-signup").style.display = "none";
         document.getElementById("form-signup-confirm").style.display = "none";
+        document.getElementById("login-button").style.display = "block";
+        document.getElementById("loader_login").style.display = "none";
     }
 
     function display_signup() {
         document.getElementById("form-login").style.display = "none";
         document.getElementById("form-signup").style.display = "block";
+        document.getElementById("signup-button").style.display = "block";
+        document.getElementById("loader_signup").style.display = "none";
     }
 
 
@@ -158,6 +196,7 @@ $(document).ready(function () {
     });
 
     $('.login-button').click(function () {
+        console.log(login_display)
         if (login_display == 1) {
             login();
         }
@@ -167,4 +206,5 @@ $(document).ready(function () {
             display_login();
         }
     });
+
 });
