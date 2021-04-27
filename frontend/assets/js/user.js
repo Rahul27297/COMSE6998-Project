@@ -78,12 +78,19 @@ async function loadBids() {
 async function acceptBid() {
     console.log("bid accepted")
 
+    // get the vendor id
+    for (var i=0;i<document.getElementsByClassName("quoteCheckBox").length;i++){
+        if (document.getElementsByClassName("quoteCheckBox")[i].checked) {
+            vendorID = document.getElementsByClassName("quoteCheckBox")[i].id
+        }
+    }
+
     // delete the quotation of this user from the quotation db
     // delete the bids from the bids db
     // send thank you email to the user
     // send email to the vendor
     userID = document.getElementById("email").value
-    url = "https://moz3yfg111.execute-api.us-east-1.amazonaws.com/dev3/acceptbid/?user_id="+userID
+    url = "https://moz3yfg111.execute-api.us-east-1.amazonaws.com/dev3/acceptbid/?user_id="+userID+"&vendor_id="+vendorID
     console.log(url)
     try {
         const response = await fetch(url);
