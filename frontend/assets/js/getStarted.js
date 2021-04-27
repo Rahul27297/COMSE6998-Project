@@ -228,14 +228,15 @@ async function checkInverter() {
 async function sendQuotationReq() {
     console.log("sending quotation to db")
 
-    // get the values to send
+    // the user info from the session token
+    var userInfo = JSON.parse(sessionStorage.getItem("userInfo"));
 
     const data = {
         // this profile info will need to be changed to user profile data
         profile: {
-            user_id: "rahul.chaudhari27297@gmail.com",
-            first_name: "Rahul",
-            last_name: "Chaudari"
+            user_id: userInfo.email,
+            first_name: userInfo.name.split(" ")[0],
+            last_name: userInfo.name.split(" ")[1]
         },
         address: {
             street: document.getElementById("out-street").value,
