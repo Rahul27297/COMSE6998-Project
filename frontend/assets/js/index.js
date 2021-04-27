@@ -5,6 +5,21 @@ $(document).ready(function () {
     var userName = sessionStorage.getItem("userName");
     var userEmail = sessionStorage.getItem("userEmail");
     var access_token = sessionStorage.getItem("access_token");
+    var userInfo = JSON.parse(sessionStorage.getItem("userInfo"));
+    var isVendor = 0;
+    console.log(isVendor);
+    if (userInfo.type == "vendor") {
+        isVendor = 1;
+        console.log(isVendor);
+    }
+
+    if (isVendor) {
+        console.log(isVendor);
+        document.getElementById("get-started-link").style.display = "none";
+        document.getElementById("get-started-caption_1").style.display = "none";
+        document.getElementById("get-started-caption_2").style.display = "none";
+        document.getElementById("get-started-caption_3").style.display = "none";
+    }
 
     var customerSignup = document.getElementById("customerSignup");
     var vendorSignup = document.getElementById("vendorSignup");
