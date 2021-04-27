@@ -102,6 +102,7 @@ async function acceptBid() {
             alert("Error in updating database")
         } else {
             console.log("database updated, email sent")
+            alert("Congratulations! Bid succesfully accepted, you will receive an email.")
         }
     }
     catch(error) {

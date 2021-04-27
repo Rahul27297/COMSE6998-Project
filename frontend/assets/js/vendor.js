@@ -96,6 +96,9 @@ async function sendBid() {
         });
         const json = await response.json();
         console.log(json);
+
+        // send alert
+        alert("Bid succesfully sent, you will be notified if the customer accepts it!")
     }
     catch(error) {
         console.log(error)

@@ -148,9 +148,9 @@ $(document).ready(function () {
         document.getElementById("loader_login").style.display = "block";
         callLoginAPI(body).then((response) => {
             console.log("Recieved Response");
-            console.log(response.data.data.access_token);
-            var access_token = response.data.data.access_token;
             if (response.data.error == false) {
+                console.log(response.data.data.access_token);
+                var access_token = response.data.data.access_token;
                 document.getElementById("success-alert").style.display = "block";
                 document.getElementById("success-alert").innerHTML = "Login Successful!";
                 sessionStorage.setItem("userEmail", inputEmail);
@@ -161,6 +161,7 @@ $(document).ready(function () {
             else {
                 document.getElementById("login-button").style.display = "block";
                 document.getElementById("loader_login").style.display = "none";
+                alert("Incorrect username/password");
             }
         });
     }
