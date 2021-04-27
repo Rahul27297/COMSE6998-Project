@@ -107,4 +107,20 @@ def add_to_db():
 
 #create_domain_json()
 #add_id_to_data()
-add_to_db()
+#add_to_db()
+solar_brand_list = []
+inverter_brand_list = []
+with open('components.json', 'r') as data:
+    for line in data:
+        data_loaded = json.loads(line)
+        brand = data_loaded['brand']
+        Type = data_loaded['type']
+        if Type == "Solar Panel":
+            if brand not in solar_brand_list:
+                solar_brand_list.append(brand)
+        else:
+            if brand not in inverter_brand_list:
+                inverter_brand_list.append(brand)
+print(solar_brand_list)
+print("A")
+print(inverter_brand_list)
