@@ -7,8 +7,8 @@ $(document).ready(function () {
     var access_token = sessionStorage.getItem("access_token");
     var userInfo = JSON.parse(sessionStorage.getItem("userInfo"));
     var isVendor = 0;
-    console.log(isVendor);
-    if (userInfo.type == "vendor") {
+    console.log(window.location.pathname);
+    if (userLoggedIn == "1" && userInfo.type == "vendor") {
         isVendor = 1;
         console.log(isVendor);
     }
@@ -16,9 +16,11 @@ $(document).ready(function () {
     if (isVendor) {
         console.log(isVendor);
         document.getElementById("get-started-link").style.display = "none";
-        document.getElementById("get-started-caption_1").style.display = "none";
-        document.getElementById("get-started-caption_2").style.display = "none";
-        document.getElementById("get-started-caption_3").style.display = "none";
+        if (window.location.pathname.includes("index.html")) {
+            document.getElementById("get-started-caption_1").style.display = "none";
+            document.getElementById("get-started-caption_2").style.display = "none";
+            document.getElementById("get-started-caption_3").style.display = "none";
+        }
     }
 
     var customerSignup = document.getElementById("customerSignup");
@@ -40,6 +42,7 @@ $(document).ready(function () {
     function logoutUser() {
         console.log("Logout");
         sessionStorage.clear();
+        document.getElementById("userNameDisplay").style.display = "none";
         window.location.href = './index.html';
     }
 
