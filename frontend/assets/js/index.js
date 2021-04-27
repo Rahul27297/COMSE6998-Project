@@ -1,15 +1,32 @@
 $(document).ready(function () {
     console.log("Ready!");
-    var userLoggedIn = sessionStorage.getItem("userLoggedIn");
+    var userLoggedIn = 0;
+    userLoggedIn = sessionStorage.getItem("userLoggedIn");
     var userName = sessionStorage.getItem("userName");
     var userEmail = sessionStorage.getItem("userEmail");
     var access_token = sessionStorage.getItem("access_token");
 
-    console.log(userEmail);
-    if (userLoggedIn != "1")
-        window.location.href = './signup.html';
-    else
+    var customerSignup = document.getElementById("customerSignup");
+    var vendorSignup = document.getElementById("vendorSignup");
+    var userNameDisplay =  document.getElementById("userNameDisplay");
+
+    if (userLoggedIn != "1") {
+        customerSignup.style.display = "block";
+        vendorSignup.style.display = "block";
+        userNameDisplay.style.display = "none";
+    }
+    else {
         document.getElementById("userName").innerHTML = "Hello " + userName;
+        customerSignup.style.display = "none";
+        vendorSignup.style.display = "none";
+        userNameDisplay.style.display = "block";
+    }
+
+    function logoutUser() {
+        console.log("Logout");
+        sessionStorage.clear();
+        window.location.href = './index.html';
+    }
 
     function callGetUserInfoAPI(body) {
         var params = {};
@@ -37,6 +54,10 @@ $(document).ready(function () {
 
     $('.userName').click(function () {
         getUserInfo();
+    });
+
+    $('.logout').click(function () {
+        logoutUser();
     });
 });
 

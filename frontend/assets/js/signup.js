@@ -78,6 +78,28 @@ $(document).ready(function () {
         });
     }
 
+    function callGetUserInfoAPI(body) {
+        var params = {};
+        console.log("callGetUserInfoAPI");
+        return sdk.getUserInfoPost(params, body, params);
+    }
+
+    function getUserInfo(access_token) {
+        var body = {
+            "access_token": access_token
+        };
+
+        callGetUserInfoAPI(body).then((response) => {
+            console.log("Recieved Response");
+            console.log(JSON.parse(response.data.body));
+            var userInfo = JSON.parse(response.data.body);
+            var userInfo = JSON.parse(response.data.body);
+            sessionStorage.setItem("userInfo", response.data.body);
+            sessionStorage.setItem("userName", userInfo.name);
+            window.location.href = './index.html';
+        });
+    }
+
     function callLoginAPI(body) {
         var params = {};
         console.log("callSignUpAPI");
@@ -104,7 +126,7 @@ $(document).ready(function () {
                 sessionStorage.setItem("userEmail", inputEmail);
                 sessionStorage.setItem("userLoggedIn", "1");
                 sessionStorage.setItem("access_token", access_token);
-                window.location.href = './index.html';
+                getUserInfo(access_token);
             }
         });
     }
