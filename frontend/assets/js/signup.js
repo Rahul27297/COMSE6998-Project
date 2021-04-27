@@ -99,6 +99,7 @@ $(document).ready(function () {
             if (response.data.username == inputEmail) {
                 document.getElementById("success-alert").style.display = "block";
                 document.getElementById("success-alert").innerHTML = "Verification Successful! Please login to continue";
+                login_setup();
             } else {
                 document.getElementById("verify-button").style.display = "block";
                 document.getElementById("loader_verify").style.display = "none";
@@ -196,8 +197,7 @@ $(document).ready(function () {
         verify();
     });
 
-    $('.login-button').click(function () {
-        console.log(login_display)
+    function login_setup() {
         if (login_display == 1) {
             login();
         }
@@ -206,6 +206,11 @@ $(document).ready(function () {
             login_display = 1;
             display_login();
         }
+    }
+
+    $('.login-button').click(function () {
+        console.log(login_display)
+        login_setup();
     });
 
 });
